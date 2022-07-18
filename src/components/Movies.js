@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-function Movies({movies, handleWishList}){
-    const [movieList, setMovieList] = useState(movies)
+function Movies({movies, handleWishList, handleFavorite}){
+    const [movieList, setMovieList] = useState([])
     const [watched, setWatched] = useState(false);
 
+    handleFavorite(movieList)
+  
 
     function handleWatched(mvid){
         setWatched((watched)=> !watched)
@@ -22,7 +24,7 @@ function Movies({movies, handleWishList}){
   <button className={watched ? "watched" : ""}onClick={handleWatched} id="myWatched">Watched</button>
   <p>{movie.plot}</p>
   <p><button onClick={handleWishList}>Add to Wish List</button></p>
-  <p><button>Add to Favorite</button></p>
+  <p><button onClick={() => setMovieList(movie)}>Add to Favorite</button></p>
 </div>
     )
     
